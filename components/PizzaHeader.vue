@@ -1,13 +1,17 @@
 <template>
   <div class="nav">
     <nuxt-link to="/" class="brand">おいしいピザ</nuxt-link>
-    <nuxt-link to="/" class="brand">Cart 0</nuxt-link>
+    <div v-if="cart.length > 0">
+      <nuxt-link to="/cart" class="brand">Cart {{ cart.length }}</nuxt-link>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'Header'
+  name: 'Header',
+  computed: mapState({ cart: (state) => state.restaurant.cart })
 }
 </script>
 
