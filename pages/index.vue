@@ -1,69 +1,59 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        oishi-pizza-client
-      </h1>
-      <h2 class="subtitle">
-        Oishi-pizza-client is front-end side of web-application for ordering
-        pizza.
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <div class="images">
+      <img src="@/static/japan.png" alt="japan" class="img-japan" />
+      <img src="@/static/japan.png" alt="japan" class="img-japan" />
+      <img src="@/static/japan.png" alt="japan" class="img-japan" />
+    </div>
+    <div class="menu">
+      <div class="items-container">
+        <item-card v-for="(item, index) in items" :key="index" :item="item" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import { mapState } from 'vuex'
+import ItemCard from '~/components/ItemCard'
 export default {
   components: {
-    Logo
+    ItemCard
+  },
+  computed: mapState({ items: (state) => state.restaurant.items }),
+  async fetch({ store }) {
+    await store.dispatch('restaurant/fetchItems')
   }
 }
 </script>
 
+async fetch({ store }) { await store.dispatch('cafe/fetchIngredients') }, }
+
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.menu {
+  margin-top: 20px;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.items-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 2%;
 }
-
-.links {
-  padding-top: 15px;
+.images {
+  border-bottom: 3px solid black;
+}
+.img-japan {
+  max-width: 32%;
+  height: auto;
 }
 </style>
