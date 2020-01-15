@@ -1,7 +1,7 @@
 <template>
   <div class="item-card-container -shadow">
     <div class="image-container">
-      <img class="img-pizza" src="@/static/pizza-default.svg" />
+      <img :src="getImagePath()" class="img-pizza" />
     </div>
     <div class="information-container">
       <h5 class="item-title">{{ item.title }}</h5>
@@ -27,10 +27,9 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      needConfirmation: false,
-      initialAmount: null
+  methods: {
+    getImagePath() {
+      return 'http://localhost:8080/resources/image/' + this.item.imagePath
     }
   }
 }
