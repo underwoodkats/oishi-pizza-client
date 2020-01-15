@@ -8,7 +8,8 @@
       <h6 class="item-title-description">{{ item.description }}</h6>
     </div>
     <div class="price-and-confirmation-container">
-      <h3 class="item-title">{{ item.priceDollar }}$</h3>
+      <h5 class="item-title">{{ item.priceDollar }}$</h5>
+      <h5 class="item-title">{{ item.priceDollar * 0.9 }}€</h5>
       <div class="item-button-container">
         <button type="button" class="ingredient-card-button">
           Add to the cart
@@ -82,7 +83,7 @@ h6 {
   display: flex;
   align-items: flex-start;
   text-align: left;
-  min-height: 37px;
+  min-height: 55px;
 }
 .item-button-container {
   display: flex;
