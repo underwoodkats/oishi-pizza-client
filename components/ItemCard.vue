@@ -11,7 +11,11 @@
       <h5 class="item-title">{{ item.priceDollar }}$</h5>
       <h5 class="item-title">{{ item.priceDollar * 0.9 }}€</h5>
       <div class="item-button-container">
-        <button type="button" class="ingredient-card-button">
+        <button
+          type="button"
+          class="ingredient-card-button"
+          @click="addItemToTheCart"
+        >
           Add to the cart
         </button>
       </div>
@@ -29,6 +33,9 @@ export default {
     }
   },
   methods: {
+    addItemToTheCart() {
+      this.$store.dispatch('restaurant/addItemToTheCart', this.item)
+    },
     getImagePath() {
       return 'http://localhost:8080/resources/image/' + this.item.imagePath
     }
