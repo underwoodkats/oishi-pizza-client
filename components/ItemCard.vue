@@ -12,11 +12,20 @@
       <h5 class="item-title">{{ item.priceDollar * 0.9 }}€</h5>
       <div class="item-button-container">
         <button
+          v-if="!isElementAlreadyInCart"
+          @click="addItemToTheCart"
           type="button"
           class="ingredient-card-button"
-          @click="addItemToTheCart"
         >
           Add to the cart
+        </button>
+        <button
+          v-else
+          @click="addMore"
+          type="button"
+          class="ingredient-card-button"
+        >
+          Add more
         </button>
       </div>
     </div>
@@ -24,6 +33,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'ItemCard',
   props: {
@@ -32,12 +43,27 @@ export default {
       required: true
     }
   },
+  data() {
+    return {}
+  },
+  computed: {
+    ...mapState({ cart: (state) => state.restaurant.cart }),
+    isElementAlreadyInCart() {
+      return this.$store.state.restaurant.cart.some(
+        (item) => item.id === this.item.id
+      )
+    }
+  },
   methods: {
     addItemToTheCart() {
+      this.isElementAlreadyInCart = true
       this.$store.dispatch('restaurant/addItemToTheCart', this.item)
     },
     getImagePath() {
       return 'http://localhost:8080/resources/image/' + this.item.imagePath
+    },
+    addMore() {
+      this.$store.dispatch('restaurant/increaseItemAmountInCart', this.item.id)
     }
   }
 }

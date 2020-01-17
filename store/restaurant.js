@@ -2,7 +2,8 @@ import RestaurantService from '../services/RestaurantService'
 
 export const state = () => ({
   items: [],
-  cart: []
+  cart: [],
+  cartCount: 0
 })
 
 export const mutations = {
@@ -11,6 +12,16 @@ export const mutations = {
   },
   ADD_ITEM_TO_CART(state, payload) {
     state.cart.push(payload)
+  },
+  INCREASE_ITEM_AMOUNT(state, itemId) {
+    for (let i = 0; i < state.cart.length; i++) {
+      if (state.cart[i].id === itemId) {
+        state.cart[i].amount += 1
+      }
+    }
+  },
+  INCREASE_CART_COUNT(state) {
+    state.cartCount += 1
   }
 }
 
@@ -22,7 +33,13 @@ export const actions = {
       })
     }
   },
-  addItemToTheCart({ commit }, item) {
-    commit('ADD_ITEM_TO_CART', { item })
+  addItemToTheCart({ commit, state }, item) {
+    item.amount = 1
+    commit('ADD_ITEM_TO_CART', item)
+    commit('INCREASE_CART_COUNT')
+  },
+  increaseItemAmountInCart({ commit }, itemId) {
+    commit('INCREASE_ITEM_AMOUNT', itemId)
+    commit('INCREASE_CART_COUNT')
   }
 }
