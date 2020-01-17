@@ -1,8 +1,8 @@
 <template>
   <div class="nav">
     <nuxt-link to="/" class="brand">おいしいピザ</nuxt-link>
-    <div v-if="cart.length > 0">
-      <nuxt-link to="/cart" class="brand">Cart {{ cart.length }}</nuxt-link>
+    <div v-if="cartCount > 0">
+      <nuxt-link to="/cart" class="brand">Cart {{ cartCount }}</nuxt-link>
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import { mapState } from 'vuex'
 export default {
   name: 'Header',
-  computed: mapState({ cart: (state) => state.restaurant.cart })
+  computed: mapState({ cartCount: (state) => state.restaurant.cartCount })
 }
 </script>
 
