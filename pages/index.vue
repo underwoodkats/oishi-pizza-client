@@ -21,8 +21,8 @@ export default {
     ItemCard
   },
   computed: mapState({ items: (state) => state.restaurant.items }),
-  async fetch({ store }) {
-    await store.dispatch('restaurant/fetchItems')
+  async created() {
+    await this.$store.dispatch('restaurant/fetchItems')
   }
 }
 </script>

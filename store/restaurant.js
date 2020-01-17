@@ -15,9 +15,9 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchItems({ commit, state }) {
+  async fetchItems({ commit, state }) {
     if (state.items.length === 0) {
-      return RestaurantService.fetchItems().then((response) => {
+      await RestaurantService.fetchItems().then((response) => {
         commit('SET_ITEMS', response)
       })
     }
