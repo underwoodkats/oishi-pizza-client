@@ -11,25 +11,21 @@
       </label>
       <input
         id="order-customer-phone-number"
-        v-model="customerPhoneNumber"
+        v-model="phoneNumber"
         type="text"
       />
 
       <label for="order-customer-address">
         Address:
       </label>
-      <input
-        id="order-customer-address"
-        v-model="customerAddress"
-        type="text"
-      />
+      <input id="order-customer-address" v-model="address" type="text" />
 
       <label for="order-customer-comment">
         Comment:
       </label>
       <textarea
         id="order-customer-comment"
-        v-model="customerComment"
+        v-model="comment"
         type="text"
       ></textarea>
 
@@ -48,18 +44,21 @@ export default {
   data() {
     return {
       customerName: '',
-      customerPhoneNumber: '',
-      customerAddress: '',
-      customerComment: ''
+      phoneNumber: '',
+      address: '',
+      comment: ''
     }
   },
   methods: {
     proceedOrder() {
       console.log('proceed')
-      console.log(this.customerName)
-      console.log(this.customerPhoneNumber)
-      console.log(this.customerAddress)
-      console.log(this.customerComment)
+      this.$emit(
+        'send-order',
+        this.customerName,
+        this.phoneNumber,
+        this.address,
+        this.comment
+      )
     }
   }
 }
@@ -82,5 +81,6 @@ export default {
   margin: 0;
   height: 50px;
   font-size: 20px;
+  cursor: pointer;
 }
 </style>
