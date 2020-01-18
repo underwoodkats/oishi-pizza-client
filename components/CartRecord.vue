@@ -52,7 +52,7 @@ export default {
   methods: {
     getImagePath() {
       return (
-        'http://fierce-sea-08570.herokuapp.com/resources/image/' +
+        'https://fierce-sea-08570.herokuapp.com/resources/image/' +
         this.cartRecord.imagePath
       )
     },

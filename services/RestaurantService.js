@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const restaurantApiClient = axios.create({
-  baseURL: 'http://fierce-sea-08570.herokuapp.com',
+  baseURL: 'https://fierce-sea-08570.herokuapp.com',
   withCredentials: false,
   headers: {
     Accept: 'application/json',
