@@ -6,6 +6,8 @@
         v-for="(cartRecord, index) in cart"
         :key="index"
         :cartRecord="cartRecord"
+        :amount="cartRecord.amount"
+        @update-cart="updateCart"
       />
     </div>
   </div>
@@ -20,7 +22,12 @@ export default {
   components: {
     CartRecord
   },
-  computed: mapState({ cart: (state) => state.restaurant.cart })
+  computed: mapState({ cart: (state) => state.restaurant.cart }),
+  methods: {
+    updateCart() {
+      this.$forceUpdate()
+    }
+  }
 }
 </script>
 

@@ -7,13 +7,16 @@
       <h4>{{ cartRecord.title }}</h4>
     </div>
     <div class="cart-record__amount-control">
-      <div>
-        <button @click="addMore" type="button" class="cart-record__icon">
+      <div v-if="amount > 1">
+        <button @click="reduce" type="button" class="cart-record__icon">
           -
         </button>
       </div>
+      <div v-if="amount <= 1">
+        <button type="button" class="cart-record__icon empty-button"></button>
+      </div>
       <div>
-        <h5>{{ cartRecord.amount }}</h5>
+        <h5>{{ amount }}</h5>
       </div>
       <div>
         <button @click="addMore" type="button" class="cart-record__icon">
@@ -39,6 +42,11 @@ export default {
     cartRecord: {
       type: Object,
       required: true
+    },
+    amount: {
+      type: Number,
+      requited: true,
+      default: 0
     }
   },
   methods: {
@@ -48,7 +56,18 @@ export default {
       )
     },
     addMore() {
-      console.log('add more')
+      this.$store.dispatch(
+        'restaurant/increaseItemAmountInCart',
+        this.cartRecord.id
+      )
+      this.$emit('update-cart')
+    },
+    reduce() {
+      this.$store.dispatch(
+        'restaurant/reduceItemAmountInCart',
+        this.cartRecord.id
+      )
+      this.$emit('update-cart')
     },
     removeItem() {
       this.$store.dispatch('restaurant/removeItem', {
@@ -103,5 +122,9 @@ h6 {
   width: 40px;
   height: 40px;
   cursor: pointer;
+}
+.empty-button {
+  border: 1px dashed black;
+  background: white;
 }
 </style>
