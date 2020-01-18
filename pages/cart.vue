@@ -23,7 +23,10 @@
       v-if="cart.length > 0 && stage === 'Checkout'"
       class="checkout__container"
     >
-      <OrderForm />
+      <OrderForm @send-order="sendOrder" />
+    </div>
+    <div v-if="stage === 'Order is accepted'" class="accepted__container">
+      <OrderConfirmation />
     </div>
   </div>
 </template>
@@ -33,13 +36,15 @@ import { mapState } from 'vuex'
 import CartRecord from '~/components/CartRecord'
 import PaymentCard from '~/components/PaymentCard'
 import OrderForm from '~/components/OrderForm'
+import OrderConfirmation from '~/components/OrderConfirmation'
 
 export default {
   name: 'Cart',
   components: {
     CartRecord,
     PaymentCard,
-    OrderForm
+    OrderForm,
+    OrderConfirmation
   },
   data() {
     return {
@@ -64,8 +69,34 @@ export default {
       }
       this.priceOrder = total
     },
+    prepareItemsAmount() {
+      const itemsAmount = {}
+      for (const i in this.cart) {
+        const currentItem = this.cart[i]
+        const id = currentItem.id
+        itemsAmount[id] = currentItem.amount
+      }
+      return itemsAmount
+    },
     changeStage(nextStage) {
       this.stage = nextStage
+    },
+    sendOrder(customerName, phoneNumber, address, comment) {
+      const itemsAmount = this.prepareItemsAmount()
+
+      const order = {
+        customerName,
+        address,
+        phoneNumber,
+        comment,
+        totalItemPriceDollar: this.priceOrder,
+        deliveryPriceDollar: this.deliveryPrice,
+        itemsAmount
+      }
+
+      this.$store.dispatch('restaurant/sendOrder', order).then(() => {
+        this.stage = 'Order is accepted'
+      })
     }
   }
 }
