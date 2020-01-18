@@ -8,7 +8,7 @@
         :class="{ active: isUSD }"
         @click="switchCurrency"
         type="button"
-        class="payment-card__currency-button"
+        class="payment-card__button"
       >
         USD
       </button>
@@ -16,7 +16,7 @@
         :class="{ active: !isUSD }"
         @click="switchCurrency"
         type="button"
-        class="payment-card__currency-button"
+        class="payment-card__button"
       >
         EUR
       </button>
@@ -47,6 +47,15 @@
         }}
       </h3>
     </div>
+    <div class="payment-card__proceed">
+      <button
+        @click="proceedOrder"
+        type="button"
+        class="payment-card__button payment-card__button-proceed "
+      >
+        Proceed Order
+      </button>
+    </div>
   </div>
 </template>
 
@@ -71,6 +80,9 @@ export default {
   methods: {
     switchCurrency() {
       this.isUSD = !this.isUSD
+    },
+    proceedOrder() {
+      this.$emit('change-stage', 'Checkout')
     }
   }
 }
@@ -95,15 +107,23 @@ export default {
   display: flex;
   flex-direction: row;
 }
-.payment-card__currency-button {
+.payment-card__button {
   border-collapse: collapse;
-  border-radius: 0;
   flex-grow: 1;
   margin: 0;
   cursor: pointer;
 }
 .active {
   background: #d53e1d;
+}
+.payment-card__proceed {
+  display: flex;
+  flex-direction: row;
+}
+.payment-card__button-proceed {
+  height: 50px;
+  flex-grow: 1;
+  font-size: 20px;
 }
 .payment-card__details {
   display: flex;
