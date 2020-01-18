@@ -1,30 +1,25 @@
 <template>
-  <div class="item-card-container -shadow">
-    <div class="image-container">
-      <img :src="getImagePath()" class="img-pizza" />
+  <div class="item-card__container -shadow">
+    <div>
+      <img :src="getImagePath()" class="item-card__image" />
     </div>
-    <div class="information-container">
-      <h5 class="item-title">{{ item.title }}</h5>
-      <h6 class="item-title-description">{{ item.description }}</h6>
+    <div>
+      <h5 class="item-card__title">{{ item.title }}</h5>
+      <h6 class="item-card__description">{{ item.description }}</h6>
     </div>
-    <div class="price-and-confirmation-container">
-      <h5 class="item-title">{{ item.priceDollar }}$</h5>
-      <h5 class="item-title">{{ item.priceDollar * 0.9 }}€</h5>
-      <div class="item-button-container">
+    <div class="item-card__price-and-confirmation">
+      <h5 class="item-card__title">{{ item.priceDollar }}$</h5>
+      <h5 class="item-card__title">{{ item.priceDollar * 0.9 }}€</h5>
+      <div class="item-card__button-container">
         <button
           v-if="!isElementAlreadyInCart"
           @click="addItemToTheCart"
           type="button"
-          class="ingredient-card-button"
+          class="item-card__button"
         >
           Add to the cart
         </button>
-        <button
-          v-else
-          @click="addMore"
-          type="button"
-          class="ingredient-card-button"
-        >
+        <button v-else @click="addMore" type="button" class="item-card__button">
           Add more
         </button>
       </div>
@@ -70,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-.item-card-container {
+.item-card__container {
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -78,11 +73,6 @@ export default {
   padding: 20px;
   margin: 10px 10px 10px;
   transition: all 0.2s linear;
-  cursor: pointer;
-}
-span {
-  font-size: 18px;
-  margin-left: -20px;
 }
 h5,
 h6 {
@@ -91,34 +81,31 @@ h6 {
 h6 {
   font-weight: 100;
 }
-.ingredient-card-button {
+.item-card__button {
   display: flex;
   flex-direction: row;
   width: 150px;
   height: 60px;
+  cursor: pointer;
 }
-.image-container {
-}
-.information-container {
-}
-.price-and-confirmation-container {
+.item-card__price-and-confirmation {
   display: flex;
   justify-content: space-around;
 }
-.img-pizza {
+.item-card__image {
   max-width: 60%;
   height: auto;
 }
-.item-title {
+.item-card__title {
   text-align: left;
 }
-.item-title-description {
+.item-card__description {
   display: flex;
   align-items: flex-start;
   text-align: left;
   min-height: 55px;
 }
-.item-button-container {
+.item-card__button-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
