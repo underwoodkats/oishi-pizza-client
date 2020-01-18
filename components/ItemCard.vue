@@ -54,7 +54,10 @@ export default {
       this.$store.dispatch('restaurant/addItemToTheCart', this.item)
     },
     getImagePath() {
-      return 'http://localhost:8080/resources/image/' + this.item.imagePath
+      return (
+        'http://fierce-sea-08570.herokuapp.com/resources/image/' +
+        this.item.imagePath
+      )
     },
     addMore() {
       this.$store.dispatch('restaurant/increaseItemAmountInCart', this.item.id)

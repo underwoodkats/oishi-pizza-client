@@ -52,7 +52,8 @@ export default {
   methods: {
     getImagePath() {
       return (
-        'http://localhost:8080/resources/image/' + this.cartRecord.imagePath
+        'http://fierce-sea-08570.herokuapp.com/resources/image/' +
+        this.cartRecord.imagePath
       )
     },
     addMore() {
