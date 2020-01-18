@@ -10,6 +10,9 @@
         @update-cart="updateCart"
       />
     </div>
+    <div>
+      <h3>Order price: {{ priceOrder }} $</h3>
+    </div>
   </div>
 </template>
 
@@ -22,10 +25,26 @@ export default {
   components: {
     CartRecord
   },
+  date() {
+    return {
+      priceOrder: 0
+    }
+  },
   computed: mapState({ cart: (state) => state.restaurant.cart }),
+  created() {
+    this.totalPrice()
+  },
   methods: {
     updateCart() {
       this.$forceUpdate()
+      this.totalPrice()
+    },
+    totalPrice() {
+      let total = 0
+      for (let i = 0; i < this.cart.length; i++) {
+        total += this.cart[i].amount * this.cart[i].priceDollar
+      }
+      this.priceOrder = total
     }
   }
 }
