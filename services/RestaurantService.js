@@ -13,5 +13,20 @@ export default {
   async fetchItems() {
     const response = await restaurantApiClient.get('/menu/all')
     return response.data
+  },
+  sendOrder(order) {
+    return restaurantApiClient({
+      method: 'post',
+      url: '/order/save',
+      data: {
+        customerName: order.customerName,
+        address: order.address,
+        phoneNumber: order.phoneNumber,
+        comment: order.comment,
+        totalItemPriceDollar: order.totalItemPriceDollar,
+        deliveryPriceDollar: order.deliveryPriceDollar,
+        itemsAmount: order.itemsAmount
+      }
+    })
   }
 }

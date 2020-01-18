@@ -39,6 +39,12 @@ export const mutations = {
         state.cart.splice(i, 1)
       }
     }
+  },
+  CLEAR_CART(state) {
+    state.cart = []
+  },
+  CLEAR_CART_COUNT(state) {
+    state.cartCount = 0
   }
 }
 
@@ -66,5 +72,11 @@ export const actions = {
   removeItem({ commit }, { id, amount }) {
     commit('REMOVE_ITEM', id)
     commit('DECREASE_CART_COUNT', amount)
+  },
+  sendOrder({ commit }, order) {
+    return RestaurantService.sendOrder(order).then(() => {
+      commit('CLEAR_CART')
+      commit('CLEAR_CART_COUNT')
+    })
   }
 }
