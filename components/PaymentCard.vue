@@ -1,5 +1,5 @@
 <template>
-  <div class="payment-card__container">
+  <div class="payment-card__container -shadow">
     <div class="payment-card__title">
       <h3 class="payment-card__title-text">Payment</h3>
     </div>
@@ -78,10 +78,8 @@ export default {
 
 <style scoped>
 .payment-card__container {
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
-  max-width: 25%;
   border-radius: 3px;
 }
 .payment-card__title {
@@ -89,7 +87,6 @@ export default {
   flex-direction: row;
   height: 30px;
   justify-content: center;
-  border-bottom: 1px solid black;
 }
 .payment-card__title-text {
   font-size: 14px;
@@ -97,7 +94,6 @@ export default {
 .payment-card__currency-container {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid black;
 }
 .payment-card__currency-button {
   border-collapse: collapse;

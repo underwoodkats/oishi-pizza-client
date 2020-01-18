@@ -9,7 +9,6 @@
     </div>
     <div class="item-card__price-and-confirmation">
       <h5 class="item-card__title">{{ item.priceDollar }}$</h5>
-      <h5 class="item-card__title">{{ item.priceDollar * 0.9 }}€</h5>
       <div class="item-card__button-container">
         <button
           v-if="!isElementAlreadyInCart"

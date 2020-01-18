@@ -96,7 +96,7 @@ h6 {
   height: auto;
   width: 50%;
   padding: 20px;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .cart-record__img {
   max-width: 15%;
