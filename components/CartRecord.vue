@@ -25,7 +25,7 @@
       <h5>{{ cartRecord.priceDollar }}$</h5>
     </div>
     <div>
-      <button @click="addMore" type="button" class="cart-record__icon">
+      <button @click="removeItem" type="button" class="cart-record__icon">
         X
       </button>
     </div>
@@ -46,6 +46,15 @@ export default {
       return (
         'http://localhost:8080/resources/image/' + this.cartRecord.imagePath
       )
+    },
+    addMore() {
+      console.log('add more')
+    },
+    removeItem() {
+      this.$store.dispatch('restaurant/removeItem', {
+        id: this.cartRecord.id,
+        amount: this.cartRecord.amount
+      })
     }
   }
 }

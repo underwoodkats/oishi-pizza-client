@@ -22,6 +22,16 @@ export const mutations = {
   },
   INCREASE_CART_COUNT(state) {
     state.cartCount += 1
+  },
+  DECREASE_CART_COUNT(state, amount) {
+    state.cartCount -= amount
+  },
+  REMOVE_ITEM(state, id) {
+    for (let i = 0; i < state.cart.length; i++) {
+      if (state.cart[i].id === id) {
+        state.cart.splice(i, 1)
+      }
+    }
   }
 }
 
@@ -41,5 +51,9 @@ export const actions = {
   increaseItemAmountInCart({ commit }, itemId) {
     commit('INCREASE_ITEM_AMOUNT', itemId)
     commit('INCREASE_CART_COUNT')
+  },
+  removeItem({ commit }, { id, amount }) {
+    commit('REMOVE_ITEM', id)
+    commit('DECREASE_CART_COUNT', amount)
   }
 }
