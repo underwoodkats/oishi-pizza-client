@@ -48,6 +48,7 @@ async fetch({ store }) { await store.dispatch('cafe/fetchIngredients') }, }
   flex-wrap: wrap;
   justify-content: flex-start;
   padding-left: 2%;
+  margin-bottom: 20px;
 }
 .images {
   border-bottom: 3px solid black;
