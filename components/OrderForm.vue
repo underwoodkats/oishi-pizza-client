@@ -135,6 +135,8 @@ export default {
   cursor: pointer;
 }
 .order-form-image {
+  width: 100%;
+  height: auto;
 }
 .order-form__text-and-image {
   margin-left: 10%;
