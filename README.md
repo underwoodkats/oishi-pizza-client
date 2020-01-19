@@ -1,10 +1,12 @@
 
-# oishi-pizza-client
-# oishi-pizza-client
+# Oishi Pizza Client
 
-> Oishi-pizza-client is front-end side of web-application for ordering pizza.
+> Oishi-pizza-client is the front-end side of web-application for ordering pizza.
+> This application allow to user see the items in the menu and order them.
+> How this actually works you can see on this address: https://polar-spire-76257.herokuapp.com/
 
 ## Build Setup
+In order to launch it you need to have npm installed on your system.
 
 ``` bash
 # install dependencies
@@ -21,4 +23,9 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Accessible pages
+| Page| Description| 
+|---|---|
+| / | Menu page with all items |  
+|  /cart | Cart page with 3 steps of confirming your order   | 
+
