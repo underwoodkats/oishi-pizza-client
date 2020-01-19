@@ -142,6 +142,7 @@ export default {
 .clicked {
   color: black;
   background: white;
+  border: 1px solid black;
 }
 .order-form__errors-text {
   margin: 5px;
