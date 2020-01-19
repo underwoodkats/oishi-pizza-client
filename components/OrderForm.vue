@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     proceedOrder() {
-      console.log('proceed')
       this.$emit(
         'send-order',
         this.customerName,

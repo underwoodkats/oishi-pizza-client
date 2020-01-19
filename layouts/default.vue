@@ -1,33 +1,49 @@
 <template>
   <div id="app">
     <pizza-header />
-    <nuxt />
+    <nuxt class="pizza-content" />
+    <pizza-footer class="pizza-footer" />
   </div>
 </template>
 
 <script>
 import PizzaHeader from '~/components/PizzaHeader.vue'
+import PizzaFooter from '~/components/PizzaFooter.vue'
 
 export default {
   components: {
-    PizzaHeader
+    PizzaHeader,
+    PizzaFooter
   }
 }
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
   padding: 0;
   text-align: center;
-  color: #2c3e50;
-  font-family: 'Open Sans', sans-serif;
+  color: black;
   font-size: 16px;
   line-height: 1.5;
 }
+.pizza-content {
+  flex: 1 0 auto;
+}
+.pizza-footer {
+  flex-shrink: 0;
+}
 #app {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
   margin: 0 auto;
+  min-height: 100vh;
 }
 hr {
   box-sizing: content-box;
@@ -90,7 +106,6 @@ optgroup,
 select,
 textarea {
   display: inline-flex;
-  font-family: 'Open sans', sans-serif;
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
@@ -102,7 +117,6 @@ input {
   height: 2.6em;
   padding: 0.5em;
   margin-bottom: 1em;
-  font: 1em 'Avenir', Helvetica, sans-serif;
 }
 button,
 input {
@@ -111,25 +125,6 @@ input {
 button,
 select {
   text-transform: none;
-}
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: none;
-}
-button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
-  outline: 2px solid #39b982;
 }
 label {
   color: rgba(0, 0, 0, 0.5);
@@ -145,43 +140,20 @@ textarea {
   overflow: auto;
   font-size: 20px;
 }
-[type='checkbox'],
-[type='radio'] {
-  box-sizing: border-box;
-  padding: 0;
-}
 [type='number']::-webkit-inner-spin-button,
 [type='number']::-webkit-outer-spin-button {
   height: auto;
 }
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-[type='search']::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
 [type='text'],
-[type='number'],
-[type='search'],
-[type='password'] {
+[type='number'] {
   height: 52px;
   width: 100%;
   padding: 0 10px;
-  font-size: 20px;
+  font-size: 14px;
 }
 [type='text']:focus,
-[type='number']:focus,
-[type='search']:focus,
-[type='password']:focus {
-  border-color: #39b982;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-[hidden] {
-  display: none;
+[type='number']:focus {
+  border-color: black;
 }
 select {
   width: 100%;
@@ -199,7 +171,7 @@ select {
   appearance: none;
 }
 select:focus {
-  border-color: #39b982;
+  border-color: black;
   outline: 0;
 }
 select:focus::ms-value {
