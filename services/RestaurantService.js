@@ -12,7 +12,7 @@ const restaurantApiClient = axios.create({
 export default {
   async fetchItems() {
     const response = await restaurantApiClient.get('/menu/all')
-    return response.data
+    return response
   },
   sendOrder(order) {
     return restaurantApiClient({

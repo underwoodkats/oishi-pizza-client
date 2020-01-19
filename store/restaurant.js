@@ -54,8 +54,10 @@ export const actions = {
     if (state.items.length === 0) {
       NProgress.start()
       await RestaurantService.fetchItems().then((response) => {
-        commit('SET_ITEMS', response)
-        NProgress.done()
+        if (response.status === 200) {
+          commit('SET_ITEMS', response.data)
+          NProgress.done()
+        }
       })
     }
   },
@@ -78,7 +80,7 @@ export const actions = {
   },
   sendOrder({ commit }, order) {
     NProgress.start()
-    return RestaurantService.sendOrder(order).then(() => {
+    return RestaurantService.sendOrder(order).then((response) => {
       commit('CLEAR_CART')
       commit('CLEAR_CART_COUNT')
       NProgress.done()
