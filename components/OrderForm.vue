@@ -1,6 +1,15 @@
 <template>
   <div class="order-form">
     <form @submit.prevent="proceedOrder" class="order-form-container">
+      <div v-if="errors.length">
+        <h5
+          v-for="(error, index) in errors"
+          :key="index"
+          class="order-form__errors-text"
+        >
+          {{ error }}
+        </h5>
+      </div>
       <label for="order-customer-name">
         Name:
       </label>
@@ -60,18 +69,41 @@ export default {
       phoneNumber: '',
       address: '',
       comment: '',
-      isClick: false
+      isClick: false,
+      errors: []
     }
   },
   methods: {
     proceedOrder() {
-      this.$emit(
-        'send-order',
-        this.customerName,
-        this.phoneNumber,
-        this.address,
-        this.comment
-      )
+      this.validate()
+      if (!this.errors.length) {
+        this.isClick = true
+        this.$emit(
+          'send-order',
+          this.customerName,
+          this.phoneNumber,
+          this.address,
+          this.comment
+        )
+      }
+    },
+    validate() {
+      this.errors = []
+      if (!this.customerName) {
+        this.errors.push(
+          'Please input your name! Our delivery men should know how to politely contact you.'
+        )
+      }
+      if (!this.phoneNumber) {
+        this.errors.push(
+          'Please input your phone number! In case our delivery man will have a couple of questions.'
+        )
+      }
+      if (!this.address) {
+        this.errors.push(
+          'Please input your address! It might happen that the delivery man is not psychic and cannot find you without this information.'
+        )
+      }
     }
   }
 }
@@ -110,5 +142,11 @@ export default {
 .clicked {
   color: black;
   background: white;
+}
+.order-form__errors-text {
+  margin: 5px;
+  font-size: 12px;
+  font-weight: 200;
+  color: #ee1f1e;
 }
 </style>
