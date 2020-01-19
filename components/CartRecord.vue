@@ -111,7 +111,8 @@ h6 {
   align-items: center;
 }
 .cart-record__title-text {
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 500;
 }
 .cart-record__amount-control {
   display: flex;
