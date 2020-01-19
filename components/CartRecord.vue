@@ -4,7 +4,7 @@
       <img :src="getImagePath()" />
     </div>
     <div class="cart-record__title">
-      <h4>{{ cartRecord.title }}</h4>
+      <h6 class="cart-record__title-text">{{ cartRecord.title }}</h6>
     </div>
     <div class="cart-record__amount-control">
       <div v-if="amount > 1">
@@ -24,7 +24,7 @@
         </button>
       </div>
     </div>
-    <div>
+    <div class="cart_record__total-price">
       <h5>{{ cartRecord.priceDollar * amount }}$</h5>
     </div>
     <div>
@@ -95,7 +95,7 @@ h6 {
   justify-content: space-between;
   align-items: center;
   height: auto;
-  width: 50%;
+  width: 65%;
   padding: 20px;
   margin: 10px 0;
 }
@@ -104,11 +104,14 @@ h6 {
   height: auto;
 }
 .cart-record__title {
-  min-width: 40%;
+  width: 30%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.cart-record__title-text {
+  font-size: 12px;
 }
 .cart-record__amount-control {
   display: flex;
@@ -127,5 +130,8 @@ h6 {
 .empty-button {
   border: 1px dashed black;
   background: white;
+}
+.cart_record__total-price {
+  min-width: 7%;
 }
 </style>

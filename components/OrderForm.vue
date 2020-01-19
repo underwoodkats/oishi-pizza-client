@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="order-form">
     <form @submit.prevent="proceedOrder" class="order-form-container">
       <label for="order-customer-name">
         Name:
@@ -30,11 +30,24 @@
       ></textarea>
 
       <div class="order-form__button-container">
-        <button type="submit" name="button" class="order-form__submit-button">
+        <button
+          :class="{ clicked: isClick }"
+          type="submit"
+          name="button"
+          class="order-form__submit-button"
+        >
           Order
         </button>
       </div>
     </form>
+    <div class="order-form__text-and-image">
+      <img
+        src="@/static/pizza-order.jpg"
+        alt="japan"
+        class="order-form-image"
+      />
+      <h6 v-if="isClick">Your order is being processed. Please wait.</h6>
+    </div>
   </div>
 </template>
 
@@ -46,7 +59,8 @@ export default {
       customerName: '',
       phoneNumber: '',
       address: '',
-      comment: ''
+      comment: '',
+      isClick: false
     }
   },
   methods: {
@@ -64,6 +78,12 @@ export default {
 </script>
 
 <style scoped>
+.order-form {
+  margin-left: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .order-form-container {
   display: flex;
   flex-direction: column;
@@ -81,5 +101,14 @@ export default {
   height: 50px;
   font-size: 20px;
   cursor: pointer;
+}
+.order-form-image {
+}
+.order-form__text-and-image {
+  margin-left: 10%;
+}
+.clicked {
+  color: black;
+  background: white;
 }
 </style>

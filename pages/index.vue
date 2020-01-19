@@ -1,12 +1,10 @@
 <template>
-  <div class="container">
-    <div class="images">
-      <img src="@/static/japan.png" alt="japan" class="img-japan" />
-      <img src="@/static/japan.png" alt="japan" class="img-japan" />
-      <img src="@/static/japan.png" alt="japan" class="img-japan" />
+  <div class="menu__container">
+    <div class="menu__layout">
+      <img src="@/static/main-layout.jpeg" alt="layout" class="menu__image" />
     </div>
-    <div class="menu">
-      <div class="items-container">
+    <div class="menu__menu-block">
+      <div class="menu__items-container">
         <item-card v-for="(item, index) in items" :key="index" :item="item" />
       </div>
     </div>
@@ -30,7 +28,7 @@ export default {
 async fetch({ store }) { await store.dispatch('cafe/fetchIngredients') }, }
 
 <style>
-.container {
+.menu__container {
   margin: 0 auto;
   min-height: 80vh;
   display: flex;
@@ -39,10 +37,10 @@ async fetch({ store }) { await store.dispatch('cafe/fetchIngredients') }, }
   align-items: center;
   text-align: center;
 }
-.menu {
+.menu__menu-block {
   margin-top: 20px;
 }
-.items-container {
+.menu__items-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -50,11 +48,11 @@ async fetch({ store }) { await store.dispatch('cafe/fetchIngredients') }, }
   padding-left: 2%;
   margin-bottom: 20px;
 }
-.images {
+.menu__layout {
+  margin-top: 35px;
   border-bottom: 3px solid black;
 }
-.img-japan {
-  max-width: 32%;
+.menu__image {
   height: auto;
 }
 </style>

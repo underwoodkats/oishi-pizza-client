@@ -18,7 +18,12 @@
         >
           Add to the cart
         </button>
-        <button v-else @click="addMore" type="button" class="item-card__button">
+        <button
+          v-else
+          @click="addMore"
+          type="button"
+          class="item-card__button button-more"
+        >
           Add more
         </button>
       </div>
@@ -105,11 +110,16 @@ h6 {
   display: flex;
   align-items: flex-start;
   text-align: left;
-  min-height: 55px;
+  min-height: 65px;
 }
 .item-card__button-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+.button-more {
+  color: black;
+  background: white;
+  border: 1px solid black;
 }
 </style>
