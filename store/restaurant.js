@@ -80,7 +80,7 @@ export const actions = {
   },
   sendOrder({ commit }, order) {
     NProgress.start()
-    return RestaurantService.sendOrder(order).then((response) => {
+    return RestaurantService.sendOrder(order).then(() => {
       commit('CLEAR_CART')
       commit('CLEAR_CART_COUNT')
       NProgress.done()
