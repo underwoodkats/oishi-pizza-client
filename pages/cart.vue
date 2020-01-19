@@ -1,6 +1,12 @@
 <template>
   <div class="cart__page">
     <h1>{{ stage }}</h1>
+    <div v-if="cart.length === 0 && stage === 'Cart'">
+      <information>
+        Your cart is empty. We suggest you to go to the main page and see what
+        we have.
+      </information>
+    </div>
     <div v-if="cart.length > 0 && stage === 'Cart'" class="cart__container">
       <div class="cart__items-container">
         <cart-record
@@ -25,8 +31,10 @@
     >
       <OrderForm @send-order="sendOrder" />
     </div>
-    <div v-if="stage === 'Order is accepted'" class="accepted__container">
-      <OrderConfirmation />
+    <div v-if="stage === 'Order is accepted'">
+      <information>
+        Your order has been successfully accepted, you can go to the main page.
+      </information>
     </div>
   </div>
 </template>
@@ -36,7 +44,7 @@ import { mapState } from 'vuex'
 import CartRecord from '~/components/CartRecord'
 import PaymentCard from '~/components/PaymentCard'
 import OrderForm from '~/components/OrderForm'
-import OrderConfirmation from '~/components/OrderConfirmation'
+import Information from '~/components/Information'
 
 export default {
   name: 'Cart',
@@ -44,7 +52,7 @@ export default {
     CartRecord,
     PaymentCard,
     OrderForm,
-    OrderConfirmation
+    Information
   },
   data() {
     return {

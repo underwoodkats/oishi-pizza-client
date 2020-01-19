@@ -53,6 +53,7 @@ async fetch({ store }) { await store.dispatch('cafe/fetchIngredients') }, }
   border-bottom: 3px solid black;
 }
 .menu__image {
+  margin-top: 20px;
   height: auto;
 }
 </style>
