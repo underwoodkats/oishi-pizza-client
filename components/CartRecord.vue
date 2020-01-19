@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="cart_record__total-price">
-      <h5>{{ cartRecord.priceDollar * amount }}$</h5>
+      <h5>{{ (cartRecord.priceDollar * amount).toFixed(2) }}$</h5>
     </div>
     <div>
       <button @click="removeItem" type="button" class="cart-record__icon">
