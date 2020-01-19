@@ -1,3 +1,4 @@
+import NProgress from 'nprogress/nprogress'
 import RestaurantService from '../services/RestaurantService'
 
 export const state = () => ({
@@ -51,8 +52,10 @@ export const mutations = {
 export const actions = {
   async fetchItems({ commit, state }) {
     if (state.items.length === 0) {
+      NProgress.start()
       await RestaurantService.fetchItems().then((response) => {
         commit('SET_ITEMS', response)
+        NProgress.done()
       })
     }
   },
@@ -74,9 +77,11 @@ export const actions = {
     commit('DECREASE_CART_COUNT', amount)
   },
   sendOrder({ commit }, order) {
+    NProgress.start()
     return RestaurantService.sendOrder(order).then(() => {
       commit('CLEAR_CART')
       commit('CLEAR_CART_COUNT')
+      NProgress.done()
     })
   }
 }
